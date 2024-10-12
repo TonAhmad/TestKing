@@ -110,12 +110,12 @@
 
     <div class="container-xl">
         <div class="row">
-            <?php 
+            <?php
             echo "
             <div class='col mt-1'>
                 <div class='card' style='width: 18rem;'>
                     <ul class='list-group list-group-flush'>
-                        <li class='list-group-item'>ID: ".$fathon['id']."</li>
+                        <li class='list-group-item'>ID: " . $fathon['id'] . "</li>
                         <li class='list-group-item'>Name: " . $fathon['name'] . "</li>
                         <li class='list-group-item'>Age: " . $fathon['age'] . "</li>
                         <li class='list-group-item'>Asal: " . $fathon['asal'] . "</li>
@@ -124,7 +124,7 @@
                 </div>
             </div>
             ";
-            
+
             echo "
             <div class='col mt-1'>
                 <div class='card' style='width: 18rem;'>
@@ -180,6 +180,126 @@
             ?>
         </div>
     </div>
+    <br>
+    <!-- satu -->
+    <div class="container">
+        <h1>ARITMATHIC OPERATION</h1>
+        <?php
+        $result = 0;
+
+        $tinggi = 173;
+
+        $result = ($tinggi - 100) - (($tinggi - 100) * 0.1);
+
+        echo "Berat badan idealnya: $result"
+            ?>
+    </div>
+
+    <!-- dua -->
+    <div class="container">
+        <?php
+        $jumlah = 0;
+        $akhir = 0;
+
+        $buah = 5000;
+        $sayur = 100000;
+        $gula = 15000;
+        $diskon = 0.15;
+
+        $jumlah = ($buah + $sayur + $gula) * $diskon;
+        $akhir = ($buah + $sayur + $gula) - $jumlah;
+
+        echo "jumlah:Rp.$akhir ";
+        ?>
+    </div>
+
+    <!-- ketiga -->
+    <div class="container mt-4">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" name="nama" id="nama" required>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="mb-3">
+                <label for="TB" class="form-label">Tinggi Badan (cm)</label>
+                <input type="number" class="form-control" name="tb" id="TB" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Hitung</button>
+        </form>
+
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nama = $_POST['nama'];
+            $tb = $_POST['tb'];
+            $gender = $_POST['gender'];
+
+
+            if ($gender == "male") {
+                $broca_ideal = ($tb - 100) - (0.10 * ($tb - 100));
+            } elseif ($gender == "female") {
+                $broca_ideal = ($tb - 100) - (0.15 * ($tb - 100));
+            }
+
+
+            echo "<div class='mt-4 alert alert-info'>";
+            echo "<h4>Hasil Perhitungan Berat Badan Ideal</h4>";
+            echo "Nama: $nama<br>";
+            echo "Tinggi Badan: $tb cm<br>";
+            echo "Berat Badan Ideal: " . number_format($broca_ideal, 2) . " kg<br>";
+            echo "</div>";
+        }
+        ?>
+    </div>
+
+    <!-- empat -->
+    <div class="container mt-5">
+        <h2 class="mb-4">Perhitungan Diskon</h2>
+        <form method="POST" action="">
+            <div class="mb-3">
+                <label for="buah" class="form-label">Harga Buah</label>
+                <input type="number" class="form-control" id="buah" name="buah" placeholder="Masukkan harga buah"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="sayur" class="form-label">Harga Sayur</label>
+                <input type="number" class="form-control" id="sayur" name="sayur" placeholder="Masukkan harga sayur"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="gula" class="form-label">Harga Gula</label>
+                <input type="number" class="form-control" id="gula" name="gula" placeholder="Masukkan harga gula"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="diskon" class="form-label">Diskon</label>
+                <input type="text" class="form-control" id="diskon" value="15%" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Hitung</button>
+        </form>
+
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $buah = isset($_POST['buah']) ? $_POST['buah'] : 0;
+            $sayur = isset($_POST['sayur']) ? $_POST['sayur'] : 0;
+            $gula = isset($_POST['gula']) ? $_POST['gula'] : 0;
+            $diskon = 0.15;
+
+            $jumlah_diskon = ($buah + $sayur + $gula) * $diskon;
+            $total_akhir = ($buah + $sayur + $gula) - $jumlah_diskon;
+
+            echo "<div class='alert alert-info mt-4'>Total setelah diskon: Rp. " . number_format($total_akhir, 2, ',', '.') . "</div>";
+        }
+        ?>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
