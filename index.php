@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+
+        .card{
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+
+        .card-img-top {
+            aspect-ratio: 16 / 7;
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+    </style>
     <title>Document</title>
 </head>
 
@@ -181,6 +196,10 @@
         </div>
     </div>
     <br>
+
+    <!-- --------------------------------------------------------------- -->
+
+    <!-- ARITMATHIC -->
     <!-- satu -->
     <div class="container">
         <h1>ARITMATHIC OPERATION</h1>
@@ -299,6 +318,168 @@
         }
         ?>
     </div>
+
+    <!-- ---------------------------------------------------------- -->
+
+    <!-- TERNARY -->
+    <div class="container mt-5">
+        <h1>TERNARY OPERATION TEST</h1>
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h3>Form Penilaian</h3>
+            </div>
+            <div class="card-body">
+                <form action="#" method="POST">
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="kelas" class="form-label">Kelas</label>
+                        <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukkan Kelas"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nilai_tugas" class="form-label">Nilai Tugas</label>
+                        <input type="number" class="form-control" id="nilai_tugas" name="nilai_tugas" min="0" max="100"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nilai_projek" class="form-label">Nilai Projek</label>
+                        <input type="number" class="form-control" id="nilai_projek" name="nilai_projek" min="0"
+                            max="100" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nilai_mt" class="form-label">Nilai MT</label>
+                        <input type="number" class="form-control" id="nilai_mt" name="nilai_mt" min="0" max="100"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="absensi" class="form-label">Absensi (%)</label>
+                        <input type="number" class="form-control" id="absensi" name="absensi" min="0" max="100"
+                            required>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                $nilai_tugas = $_POST['nilai_tugas'];
+                $nilai_projek = $_POST['nilai_projek'];
+                $nilai_mt = $_POST['nilai_mt'];
+                $absensi = $_POST['absensi'];
+
+                $nilai_akhir = ($nilai_tugas * 0.3) + ($nilai_projek * 0.5) + ($nilai_mt * 0.2);
+
+                $status = ($nilai_akhir >= 75 && $absensi >= 75)
+                    ? 'Lulus' : 'Tidak Lulus';
+
+                echo "<div class='alert alert-info mt-3 text-center'>
+                            Nilai Akhir: <strong>$nilai_akhir</strong><br>
+                            Nilai absensi: <strong>$absensi</strong><br>
+                            Status: <strong>$status</strong>
+                          </div>";
+            }
+            ?>
+        </div>
+    </div>
+
+    <!-- For loop -->
+    <div class="container mt-4">
+        <div>
+            <h1>For and For Each</h1>
+        </div>
+        <div class="container">
+            <div>
+                <h3>Soal 1.</h3>
+            </div>
+            <?php
+            $sum = 0;
+
+            for ($i = 1; $i <= 19; $i += 2) {
+                echo "$i ";
+                $sum += $i;
+            }
+
+            echo "<br>Jumlah total: $sum";
+            ?>
+        </div>
+        <div class="container">
+            <div>
+                <h3>Soal 2</h3>
+            </div>
+            <?php
+            for ($i = 1; $i * $i <= 100; $i++) {
+                $pangkatDua = $i * $i;
+                echo "$pangkatDua ";
+            }
+            ?>
+
+        </div>
+        <div class="container">
+            <div>
+                <h3>Soal 3</h3>
+            </div>
+            <?php
+            for ($i = 1; $i <= 100; $i++) {
+                if ($i % 3 == 0 && $i % 5 == 0) {
+                    echo "flash buzz, ";
+                } else if ($i % 3 == 0) {
+                    echo "buzz, ";
+                } else if ($i % 5 == 0) {
+                    echo "flash, ";
+                } else {
+                    echo $i . ", ";
+                }
+            }
+            ?>
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div>
+                    <h3>Soal 4 </h3>
+                </div>
+                <?php
+                $produk = [
+                    ["nama" => "Sate", "deskripsi" => "Sate maranggi mantap", "harga" => 15000, "gambar" => "https://th.bing.com/th/id/OIP.cvCltr4n8jvuj1NIr_1fawHaDt?w=339&h=174&c=7&r=0&o=5&dpr=1.1&pid=1.7"],
+                    ["nama" => "Mio karbu", "deskripsi" => "Power oke, bensin tidak", "harga" => 5000000, "gambar" => "https://th.bing.com/th/id/OIP.VxyHYaZuw8NLX8TiXQwdTwHaE6?w=260&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7"],
+                    ["nama" => "Ortusight Hyperblast evo", "deskripsi" => "Mantap untuk jarak hingga jarak HM", "harga" => 579000, "gambar" => "https://th.bing.com/th/id/OIP.t6hoKwWinVzs3FbZtaQA8QHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.1&pid=1.7"],
+                    ["nama" => "Nike Alphafly ", "deskripsi" => "Mantap ini bisa buat FM dan meningkatkan kecepatan(plat karbon)", "harga" => 4429999, "gambar" => "https://th.bing.com/th/id/OIP.o2d5MplC5LcGDz2o4jRbeAHaE6?w=249&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7"],
+                    ["nama" => "TSUNAMI SNM300", "deskripsi" => "Mantap dan keren aja sih", "harga" => 6683723, "gambar" => "https://media.karousell.com/media/photos/products/2022/9/5/tsunami_snm300_2022_fixie_bike_1662369204_a37a785f_progressive.jpg"],
+                    ["nama" => "Huawei GT4", "deskripsi" => "Jam all arounder, fitur lengkap, baterai lebih tahan lama daripada hubungan anak gen z", "harga" => 4631975, "gambar" => "https://th.bing.com/th/id/OIP.1gCMVF1ZB25-PvIIcNKpOQHaH0?rs=1&pid=ImgDetMain"]
+                ];
+
+                foreach ($produk as $p) {
+                    echo "
+                <div class='col-md-4 mb-3'>
+                    <div class='card h-100'>
+                        <img src='{$p['gambar']}' class='card-img-top' alt='Gambar Produk'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>{$p['nama']}</h5>
+                            <p class='card-text'>{$p['deskripsi']}</p>
+                            <p class='card-text'><strong>Harga: </strong>Rp " . number_format($p['harga'], 0, ',', '.') . "</p>
+                        </div>
+                    </div>
+                </div>";
+                }
+                ?>
+
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
