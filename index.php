@@ -7,8 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-
-        .card{
+        .card {
             max-width: 550px;
             margin: 0 auto;
         }
@@ -477,6 +476,54 @@
                 ?>
 
             </div>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------------------------- -->
+
+    <div class="container">
+        <div class="container">
+            <h1>FUNCTION DASAR</h1>
+            <?php
+            function hlo()
+            {
+                echo "Hello selamat datang" . PHP_EOL;
+            }
+            hlo();
+            ?>
+        </div>
+        <div class="container">
+            <?php
+            function sapa($nama, $gender)
+            {
+                $sapa = ($gender == "laki-laki") ? "Hi Bro" : "Hi Sis";
+
+                echo "$sapa, nama saya adalah $nama, dan saya adalah $gender.<br>";
+            }
+
+
+            sapa("Andi", "laki-laki");
+            sapa("Siti", "wanita");
+            ?>
+
+        </div>
+        <div class="container">
+            <?php
+            function cekbos($angka)
+            {
+                if ($angka % 2 == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            $nilai = 11;
+            if (cekbos($nilai)) {
+                echo "$nilai adalah bilangan genap.";
+            } else {
+                echo "$nilai adalah bilangan ganjil.";
+            }
+            ?>
         </div>
     </div>
 
