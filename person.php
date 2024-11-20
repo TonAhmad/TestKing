@@ -13,7 +13,7 @@ class Person
         $this->alamat = $alamat;
         $this->kota = $kota;
     }
-    function say()
+    function say(string $nama)
     {
         echo "hello ";
     }

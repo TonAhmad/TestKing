@@ -22,6 +22,10 @@ class Student extends Person
         $this->nis = $nis;
 
     }
+    function say(string $nama)
+    {
+        echo "hello $nama";
+    }
 
 }
 
@@ -37,9 +41,13 @@ echo $fikri->kota;
 echo "<br>";
 echo "<br>";
 
+$std2 = new Student("alip", "jalan jalan", "anjun", "41324141");
+$std2->say("alip");
+
+
 
 $tom = new Faculty("Tom", "UI", "Depok", "2007110");
-
+echo "<br>";
 echo $tom->nama;
 echo "<br>";
 echo $tom->nip;
